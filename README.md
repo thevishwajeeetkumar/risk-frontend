@@ -1,17 +1,37 @@
-# React + Vite
+# Risk Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Vite + React single-page app for interacting with the risk analysis backend. Users can upload loan data, run retrieval-augmented queries, and (for CRO users) review historical ECL snapshots.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+The app expects an API endpoint exposed via the `VITE_API_BASE_URL` environment variable. You can define it in a `.env` file at the project root:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+# Local dev points to your local FastAPI server
+VITE_API_BASE_URL=http://localhost:8000
 
-## Expanding the ESLint configuration
+# For production, set this to the Render deployment:
+# VITE_API_BASE_URL=https://risk-analysis-3bwh.onrender.com
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# frontend
+## Deployment (Vercel)
+
+Vercel can auto-detect the Vite setup. These settings are used via `vercel.json`:
+
+- Build command: `npm run build`
+- Output directory: `dist`
+- SPA routing: all paths rewrite to `index.html`
+
+Remember to add `VITE_API_BASE_URL` to your Vercel project environment variables for each environment (`Development`, `Preview`, `Production`).
+
+## Scripts
+
+- `npm run dev` – start Vite dev server
+- `npm run build` – build the production bundle
+- `npm run preview` – preview the built app locally
+- `npm run lint` – run ESLint over the project

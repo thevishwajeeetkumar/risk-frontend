@@ -16,7 +16,7 @@ export default function useQueryApi() {
       setAnswer(data);
       return data;
     } catch (e) {
-      setError(e?.response?.data?.detail || 'Query failed');
+      setError(e?.message || 'Query failed');
       throw e;
     } finally {
       setLoading(false);

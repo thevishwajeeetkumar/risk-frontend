@@ -19,7 +19,7 @@ export default function useUpload() {
       setStatus('success');
       return data;
     } catch (e) {
-      setError(e?.response?.data?.detail || 'Upload failed');
+      setError(e?.message || 'Upload failed');
       setStatus('error');
       throw e;
     }
