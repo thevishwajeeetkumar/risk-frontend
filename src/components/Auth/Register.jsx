@@ -40,7 +40,11 @@ export default function Register() {
           <input className="w-full mt-1 rounded border px-3 py-2" type="password"
                  {...register('password', {
                    required: 'Password is required',
-                   minLength: { value: 8, message: 'Min 8 characters' }
+                   minLength: { value: 8, message: 'Min 8 characters' },
+                   pattern: {
+                     value: /^(?=.*[A-Za-z])(?=.*\d).+$/,
+                     message: 'Password must contain at least one letter and one number'
+                   }
                  })}/>
           {errors.password && <p className="text-xs text-red-500">{errors.password.message}</p>}
         </div>
